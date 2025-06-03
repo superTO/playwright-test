@@ -124,7 +124,15 @@ if __name__ == "__main__":
     # start_index = hand_type if hand_type else 0
     total_rows = len(df)
     
+    # 加入sleep防止被ban IP
+    count = 5
+
     for i in range(start_index, total_rows):
+        count = count - 1
+        if count == 0:
+            count = 5
+            time.sleep(1*60)
+        
         BackerCount = int(df.at[i, 'backers_count'])
         url = df.at[i, 'urls_web_project'].replace('?ref=discovery_category_newest', '/community')\
                                           .replace('?ref=category_newest', '/community')
