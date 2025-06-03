@@ -3,7 +3,7 @@
 ## 執行步驟
 1. conda env create -f environment.yml --prefix .venv
 - 直接使用 environment.yml 建立虛擬環境 (會一併將套件安裝好, 所以會執行比較久)
-2. conda conda activate .\.venv\
+2. conda activate .\.venv\
 3. playwright install
 4. python kickstarter.py https://www.kickstarter.com/projects/metismediarpg/astra-arcanum-the-roleplaying-game/community
 - 網址自行替換

@@ -44,7 +44,7 @@ def run(playwright: Playwright, initial_url: str) -> List[str|None]:
 
     page.goto(initial_url)
 
-    time.sleep(random.uniform(1, 5)) # 等1~5秒
+    # time.sleep(random.uniform(1, 5)) # 等1~5秒
     # 先判斷是不是US再決定要不要爬
     # page.get_by_role("link", name="United States").first.click()
 
