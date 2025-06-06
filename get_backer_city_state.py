@@ -1,8 +1,5 @@
 import pandas as pd
 import sqlite3
-import math
-import argparse
-import random
 import time
 from typing import List
 from playwright.sync_api import Playwright, sync_playwright
@@ -37,6 +34,7 @@ def run(playwright: Playwright, initial_url: str) -> List[str|None]:
             href = link_element.get_attribute("href")
             href_list.append(href)
     
+    while len(href_list) < 10:  href_list.append(None)  
     # print(href_list)
     # ---------------------
     context.close()
@@ -125,7 +123,7 @@ if __name__ == "__main__":
     total_rows = len(df)
     
     # 加入sleep防止被ban IP
-    count = 5
+    count = 30
 
     for i in range(start_index, total_rows):
         count = count - 1
@@ -180,6 +178,3 @@ if __name__ == "__main__":
                 break # 發生嚴重錯誤時可以選擇中斷迴圈
 
     con_out.close()
-
-
-
