@@ -128,7 +128,7 @@ if __name__ == "__main__":
     for i in range(start_index, total_rows):
         count = count - 1
         if count == 0:
-            count = 5
+            count = 30
             time.sleep(1*60)
         
         BackerCount = int(df.at[i, 'backers_count'])
@@ -166,8 +166,10 @@ if __name__ == "__main__":
                 # --- IMPORTANT: index=True 是實現自動續爬的關鍵 ---
                 # 它會將 DataFrame 的索引 (0, 1, 2...) 作為一欄存入資料庫
                 output.to_sql("backer_location", con=con_out, if_exists=write_mode, index=True)
+                # 從 output 這個單行 DataFrame 中，取得 'row' 欄位的值
+                row_value = output['row'].iloc[0] 
                 
-                print(f'---- 已將索引 {i} 的資料寫入資料庫 (模式: {write_mode}) ----')
+                print(f'---- 已將row {row_value} 的資料寫入資料庫 (模式: {write_mode}) ----')
                 
                 # 第一次成功寫入後，之後的模式都必須是 'append'
                 if is_first_write:
